@@ -6,12 +6,16 @@ const router = express.Router();
 
 //Get posts
 // /api/posts by usign just /
-router.get('/', (req, res) => {
-    res.send('Hello!');
-})
+router.get('/', async (req, res) => {
+    //res.send('Hello!');
+    const posts = await loadPostsCollection();
+
+    //sending a find to the database
+    res.send(await posts.find({}).toArray()); //empty array because of find({})
+}) 
 
 //Funtion to connect to 'posts' collection
-
+// function in a route to do methods on it
 async function loadPostsCollection(){
 
     //Handling async data and promises
