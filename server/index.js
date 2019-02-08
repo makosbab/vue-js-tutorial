@@ -20,4 +20,4 @@ expressApp.use('/api/posts', posts);
 
 expressApp.listen(port, () => {
     console.log("Listening on port...");
-})
+});
