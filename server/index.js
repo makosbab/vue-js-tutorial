@@ -14,6 +14,16 @@ expressApp.use(cors());
 //Route for posts
 const posts = require('./routes/api/posts');
 
+//Handle production
+
+if(process.env.NODE_ENV === 'procuction'){
+
+    app.use(express.static(__dirname + '/public/'));
+
+    // Handle SPA
+    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
+}
+
 const port = process.env.PORT || 5000;
 
 expressApp.use('/api/posts', posts);
